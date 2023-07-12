@@ -65,14 +65,23 @@ Following that, the code updates the conversation context with the context recei
 
 Next, the code records the start time and calculates the elapsed time. It then enters a loop that continues as long as the elapsed time is within the maximum wait time and the Assistant's response has no generic output.
 
-![Code](./images/03.png)
-
 And finally, on the last line calculates the elapsed time based on the start time and the current timestamp.
 
-![Code](./images/04.png)
+![Code](./images/03.png)
 
 if response has any generic output messages, and if there are any, it pushes the text from those messages into an array called `responses`. And it returns the `responses` array.
 
-![Code](./images/05.png)
+![Code](./images/04.png)
 
 And the last part of the code, it extracts the response text from the Watson Assistant `result` object. Then it iterates through the generic output messages and, if a message has a response type of 'text', it pushes the text content of that message into an array called `responseText`. Finally, returns the `responseText` array.
+
+![Code](./images/05.png)
+
+### To test this API on your own.
+
+#### Requirements
+
+- An IBM Account
+- Watson Discovey instance (I'm using a plus plan) or you can store your data in IBM's COS (Cloud Object Storage)
+- Watson Assistant instance (plus or above)
+- NeuralSeek insrance
