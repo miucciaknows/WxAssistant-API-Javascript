@@ -4,7 +4,7 @@ This API provides a service for **Watson Assistant™️** provided by **IBM**, 
 
 **Watson Assistant** combines **machine learning, natural language understanding**, and **an integrated dialog editor** to create **conversation flows between your apps and your users.**
 
-T**AssistantV2 API** provides runtime methods that your client application can use to send user input to an assistant and receive a response.
+**AssistantV2 API** provides runtime methods that your client application can use to send user input to an assistant and receive a response.
 
 You can learn more about it in IBM's [documentation](https://cloud.ibm.com/apidocs/assistant-v2?code=node).
 
@@ -26,7 +26,7 @@ I have used the same project to create an API connection.
 
 This is my Assistant on my **IBM Cloud** Watson Assistant's instance.
 
--> I'm using a Plus instance to use an extension with [Watson Assistant](https://cloud.ibm.com/docs/assistant?topic=assistant-index). Please note that you need a Plus instance for this.
+--> Note that i'm using a **Plus** plan on my instance. For use an extension with [Watson Assistant](https://cloud.ibm.com/docs/assistant?topic=assistant-index), you will need a Plus instance for this.
 
 ![Watson Assistant](./images/00.png)
 
@@ -52,53 +52,81 @@ In the `assistantService.js` file, I initialized an empty object:
 Then, I created `maxWaitTime` to set the time for **Watson Assistant** to provide the answer with more time. Additionally, I created an empty array to store all the answers:
 
 `const maxWaitTime = 70000;
+<br>
 const responses = [];`
 
 Following that, the code updates the conversation context with the context received from the Assistant's response and pushes the response text to the array:
 
 `context = response.result.context;
+<br>
 responses.push(getResponseText(response.result));`
 
 Next, the code records the start time and calculates the elapsed time. It then enters a loop that continues as long as the elapsed time is within the maximum wait time and the Assistant's response has no generic output.
 
 ``context = response. result. context;
+<br>
 responses.push (getResponseText (response.result));
+<br>
 const startTime = Date. now ();
+<br>
 let elapsedTime = 0;
+<br>
 while (elapsedTime < maxWaitTime && response.result.output.generic.length === 0) {
-await new Promise(resolve => setTimeout (resolve, 100));`
-
+    await new Promise(resolve => setTimeout (resolve, 100));`
+<br>
 After adds a short delay between each iteration of the loop to avoid excessive requests, it sends a new message to Assistant service and updates the response.
 
 And finally, on the last line calculates the elapsed time based on the start time and the current timestamp.
 
 `context = response. result. context;
+<br>
 responses.push (getResponseText (response.result));
+<br>
 const startTime = Date. now ();
+<br>
 let elapsedTime = 0;
+<br>
 while (elapsedTime < maxWaitTime && response.result.output.generic.length === 0) {
-await new Promise(resolve => setTimeout (resolve, 100));
-response = await assistant.message ({
-assistantId: assistantId, sessionId, input: messageInput, context,
+<br>
+    await new Promise(resolve => setTimeout (resolve, 100));
+<br>
+    response = await assistant.message ({
+<br>
+    assistantId: assistantId, sessionId, input: messageInput, context,
+    <br>
 });
+<br>
 elapsedTime = Date.now() - startTime;`
-
+<br>
 if response has any generic output messages, and if there are any, it pushes the text from those messages into an array called `responses`. And it returns the `responses` array.
 
 `if (response. result.output. generic. length > 0) {
-responses.push (getResponseText (response.result));
+<br>
+    responses.push (getResponseText (response.result));
+<br>
 }
+<br>
 }
-return responses;`
+<br>
+    return responses;`
 
 And the last ppart of the code, it extracts the response text from the Watson Assistant `result` object. Then it iterates through the generic output messages and, if a message has a response type of 'text', it pushes the text content of that message into an array called `responseText`. Finally, returns the `responseText` array.
 
 `const responseText = [];
+<br>
 if (result.output && result.output.generic) {
-result.output.generic. forEach (response => {
-if (response. response_type === 'text') {
-responseText. push (response. text) ;
+<br>
+    result.output.generic. forEach (response => {
+<br>
+    if (response. response_type === 'text') {
+<br>
+    responseText. push (response. text);
+<br>
 }
+<br>
 });
+<br>
 }
-return responseText;`
+<br>
+    return responseText;`
+<br>
