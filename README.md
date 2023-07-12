@@ -30,7 +30,9 @@ This is my Assistant on my **IBM Cloud** Watson Assistant's instance.
 
 ![Watson Assistant](./images/00.png)
 
-When I made a request to **Watson Assistant** API, I faced an issue where I couldn't retrieve the text in the first request in my development environment. This is because when I send a question to Watson Assistant, it first goes to the "No action matches" node and then searches for the answer using **NeuralSeek.** I have set up **NeuralSeek** to find the answer in my knowledge base (Watson Discovery).
+When I made a request to **Watson Assistant** API, I faced an issue where I couldn't retrieve the text in the first request in my development environment. This is because when I send a question to Watson Assistant, it first goes to the "No action matches" node and then searches for the answer using **NeuralSeek.**
+
+I have set up **NeuralSeek** to find the answer in my knowledge base (Watson Discovery).
 
 To understand this better, here's an architecture diagram:
 
@@ -72,4 +74,4 @@ if response has any generic output messages, and if there are any, it pushes the
 
 ![Code](./images/05.png)
 
-And the last ppart of the code, it extracts the response text from the Watson Assistant `result` object. Then it iterates through the generic output messages and, if a message has a response type of 'text', it pushes the text content of that message into an array called `responseText`. Finally, returns the `responseText` array.
+And the last part of the code, it extracts the response text from the Watson Assistant `result` object. Then it iterates through the generic output messages and, if a message has a response type of 'text', it pushes the text content of that message into an array called `responseText`. Finally, returns the `responseText` array.
