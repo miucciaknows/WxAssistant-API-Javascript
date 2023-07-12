@@ -51,82 +51,25 @@ In the `assistantService.js` file, I initialized an empty object:
 
 Then, I created `maxWaitTime` to set the time for **Watson Assistant** to provide the answer with more time. Additionally, I created an empty array to store all the answers:
 
-`const maxWaitTime = 70000;
-<br>
-const responses = [];`
+`const maxWaitTime = 70000;`
+
+`const responses = [];`
 
 Following that, the code updates the conversation context with the context received from the Assistant's response and pushes the response text to the array:
 
-`context = response.result.context;
-<br>
-responses.push(getResponseText(response.result));`
+`context = response.result.context;`
+`responses.push(getResponseText(response.result));`
 
 Next, the code records the start time and calculates the elapsed time. It then enters a loop that continues as long as the elapsed time is within the maximum wait time and the Assistant's response has no generic output.
 
-``context = response. result. context;
-<br>
-responses.push (getResponseText (response.result));
-<br>
-const startTime = Date. now ();
-<br>
-let elapsedTime = 0;
-<br>
-while (elapsedTime < maxWaitTime && response.result.output.generic.length === 0) {
-    await new Promise(resolve => setTimeout (resolve, 100));`
-<br>
-After adds a short delay between each iteration of the loop to avoid excessive requests, it sends a new message to Assistant service and updates the response.
+![Code](./images/03.png)
 
 And finally, on the last line calculates the elapsed time based on the start time and the current timestamp.
 
-`context = response. result. context;
-<br>
-responses.push (getResponseText (response.result));
-<br>
-const startTime = Date. now ();
-<br>
-let elapsedTime = 0;
-<br>
-while (elapsedTime < maxWaitTime && response.result.output.generic.length === 0) {
-<br>
-    await new Promise(resolve => setTimeout (resolve, 100));
-<br>
-    response = await assistant.message ({
-<br>
-    assistantId: assistantId, sessionId, input: messageInput, context,
-    <br>
-});
-<br>
-elapsedTime = Date.now() - startTime;`
-<br>
+![Code](./images/04.png)
+
 if response has any generic output messages, and if there are any, it pushes the text from those messages into an array called `responses`. And it returns the `responses` array.
 
-`if (response. result.output. generic. length > 0) {
-<br>
-    responses.push (getResponseText (response.result));
-<br>
-}
-<br>
-}
-<br>
-    return responses;`
+![Code](./images/05.png)
 
 And the last ppart of the code, it extracts the response text from the Watson Assistant `result` object. Then it iterates through the generic output messages and, if a message has a response type of 'text', it pushes the text content of that message into an array called `responseText`. Finally, returns the `responseText` array.
-
-`const responseText = [];
-<br>
-if (result.output && result.output.generic) {
-<br>
-    result.output.generic. forEach (response => {
-<br>
-    if (response. response_type === 'text') {
-<br>
-    responseText. push (response. text);
-<br>
-}
-<br>
-});
-<br>
-}
-<br>
-    return responseText;`
-<br>
