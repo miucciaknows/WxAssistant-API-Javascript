@@ -84,4 +84,4 @@ And the last part of the code, it extracts the response text from the Watson Ass
 - An IBM Account
 - Watson Discovey instance (I'm using a plus plan) or you can store your data in IBM's COS (Cloud Object Storage)
 - Watson Assistant instance (plus or above)
-- NeuralSeek insrance
+- NeuralSeek instance
