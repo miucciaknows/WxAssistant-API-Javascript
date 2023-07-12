@@ -54,12 +54,13 @@ In the `assistantService.js` file, I initialized an empty object:
 Then, I created `maxWaitTime` to set the time for **Watson Assistant** to provide the answer with more time. Additionally, I created an empty array to store all the answers:
 
 `const maxWaitTime = 70000;`
-
+<br>
 `const responses = [];`
 
 Following that, the code updates the conversation context with the context received from the Assistant's response and pushes the response text to the array:
 
 `context = response.result.context;`
+<br>
 `responses.push(getResponseText(response.result));`
 
 Next, the code records the start time and calculates the elapsed time. It then enters a loop that continues as long as the elapsed time is within the maximum wait time and the Assistant's response has no generic output.
