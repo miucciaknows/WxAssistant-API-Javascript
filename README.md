@@ -112,9 +112,8 @@ Get `localhost:3000/session` to create a new Session.
 
 Post `localhost:3000/ask` to send your question, in the follow format:
 
-`{
+{
 
     "question": "your input here"
 
 }
-`
