@@ -117,3 +117,7 @@ Post `localhost:3000/ask` to send your question, in the follow format:
     "question": "your input here"
 
 }
+
+![Get sessionId](./images/06.png)
+
+![Post ask question to Watson Assistant](./images/07.png)
