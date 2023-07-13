@@ -118,6 +118,6 @@ Post `localhost:3000/ask` to send your question, in the follow format:
 
 }
 
-![Get sessionId]("./images/06.png")
+![Get sessionId](./images/06.png)
 
-![Post ask question to Watson Assistant]("./images/07.png")
+![Post ask question to Watson Assistant](./images/07.png)
