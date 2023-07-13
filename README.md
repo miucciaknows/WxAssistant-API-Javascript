@@ -85,3 +85,36 @@ And the last part of the code, it extracts the response text from the Watson Ass
 - Watson Discovey instance (I'm using a plus plan) or you can store your data in IBM's COS (Cloud Object Storage)
 - Watson Assistant instance (plus or above)
 - NeuralSeek instance
+
+#### Run on your localhost
+
+I use VS Code, you can use anything you want.
+
+1. Go to your terminal, type:
+
+`git clone https://github.com/miucciaknows/Watson-Assistant-API`
+
+This will create a local copy of the project on your machine.
+
+2. Navigate to the project directory using the `cd` command. For example: `cd Watson-Assistant-API/`.
+
+3. Install the project dependencies.
+
+As I'm using Node.js and Express, open your terminal and then type `npm install` to install all the dependencies listed in `package.json` or `yarn add`
+
+When the dependencies are installed, you need to start the **local server**.
+
+Type `node index.js` or `nodemon`.
+
+To test the can use Insomnia or anything that you want.
+
+Get `localhost:3000/session` to create a new Session.
+
+Post `localhost:3000/ask` to send your question, in the follow format:
+
+`{
+
+    "question": "your input here"
+
+}
+`
